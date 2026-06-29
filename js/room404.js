@@ -1,21 +1,28 @@
+AOS.init({
+    duration: 800,
+    once: true
+});
+
 const tooltip =
-    document.getElementById("tooltip");
+    document.getElementById(
+        "tooltip"
+    );
 
 const modal =
-    document.getElementById("modal");
+    new bootstrap.Modal(
+        document.getElementById(
+            "roomModal"
+        ));
 
 const modalTitle =
-    document.getElementById("modalTitle");
+    document.getElementById(
+        "modalTitle"
+    );
 
 const modalBody =
-    document.getElementById("modalBody");
-
-const closeBtn =
-    document.getElementById("closeBtn");
-
-/* =====================
-   Tooltip名稱
-===================== */
+    document.getElementById(
+        "modalBody"
+    );
 
 const names = {
 
@@ -31,21 +38,71 @@ const names = {
 
     treasureBtn: "✦ 彩蛋",
 
-    doorBtn: "✦ 離開房間"
+    doorBtn: "✦ 返回森林"
 
 };
 
-/* =====================
-   Modal內容
-===================== */
+document
+    .querySelectorAll(".hotspot")
+    .forEach(item => {
 
-const content = {
+        item.addEventListener(
 
-    deskBtn: {
+            "mousemove",
 
-        title: "關於我",
+            e => {
 
-        body: `
+                tooltip.innerHTML =
+                    names[item.id];
+
+                tooltip.style.left =
+                    e.pageX + 15 + "px";
+
+                tooltip.style.top =
+                    e.pageY + 15 + "px";
+
+                tooltip.style.opacity = 1;
+
+            });
+
+        item.addEventListener(
+
+            "mouseleave",
+
+            () => {
+
+                tooltip.style.opacity = 0;
+
+            });
+
+        item.addEventListener(
+
+            "click",
+
+            () => {
+
+                openContent(item.id);
+
+            });
+
+    });
+
+function openContent(id) {
+
+    switch (id) {
+
+        case "deskBtn":
+
+            modalTitle.innerHTML =
+                "關於我";
+
+            modalBody.innerHTML =
+
+                `
+<div data-aos="fade-up">
+
+<h3>無名先生</h3>
+
         <p>
         「先生不知何許人也，亦不詳其姓字。但這不重要，重要的是我知道薪水該匯到哪個帳戶。」<br>
         <br><br>
@@ -57,32 +114,75 @@ const content = {
         電話：0912-XXX-XXX（如果我沒接，代表我正在逃避現實） <br>
         地址：地球防衛總部 2 樓左轉底部的辦公桌 <br>
         </p>
-        `
-    },
 
-    bookBtn: {
+</div>
+`;
 
-        title: "技能樹",
+            break;
 
-        body: `
-        <ul>
-            <li>HTML</li>
-            <li>CSS</li>
-            <li>JavaScript</li>
-            <li>Bootstrap</li>
-            <li>AOS</li>
-            <li>Adobe Edge Animate</li>
-            <li>Web AR</li>
-        </ul>
-        `
-    },
+        case "bookBtn":
 
-    globeBtn: {
+            modalTitle.innerHTML =
+                "技能樹";
 
-        title: "經歷",
+            modalBody.innerHTML =
 
-        body: `
-        <p>
+                `
+<div class="skill-item"
+data-aos="fade-right">
+
+HTML5
+</div>
+
+<div class="skill-item"
+data-aos="fade-right"
+data-aos-delay="100">
+
+CSS3
+</div>
+
+<div class="skill-item"
+data-aos="fade-right"
+data-aos-delay="200">
+
+JavaScript
+</div>
+
+<div class="skill-item"
+data-aos="fade-right"
+data-aos-delay="300">
+
+Bootstrap
+</div>
+
+<div class="skill-item"
+data-aos="fade-right"
+data-aos-delay="400">
+
+AOS
+</div>
+
+<div class="skill-item"
+data-aos="fade-right"
+data-aos-delay="500">
+
+Web Design
+</div>
+`;
+
+            break;
+
+        case "globeBtn":
+
+            modalTitle.innerHTML =
+                "經歷";
+
+            modalBody.innerHTML =
+
+                `
+<div data-aos="fade-up">
+
+ <p>
 <h3>專長項目：</h3><br>
 時間管理大師：能精準將 5 分鐘的工作量，完美分配並延伸至整個 8 小時的工作天。<br>
 危機處理：當電腦當機或專案搞砸時，能以最快速度露出無辜且困惑的表情。<br>
@@ -93,169 +193,120 @@ const content = {
 英文（僅限於 Error 404、Confirm 與 Cancel）<br>
 晶片語（能與公司的咖啡機進行靈魂深處的溝通）<br>
         </p>
-        `
-    },
 
-    gramophoneBtn: {
+</div>
+`;
 
-        title: "影音作品",
+            break;
 
-        body: `
+        case "gramophoneBtn":
 
-    <div class="video-grid">
+            modalTitle.innerHTML =
+                "影音作品";
 
-        <a
-            class="video-card"
-            href="https://youtu.be/Q2qZrRZolSQ"
-            target="_blank">
+            modalBody.innerHTML =
 
-            <img
-            src="images/video1.jpg"
-            alt="作品一">
+                `
+<div class="video-grid">
 
-            <h3>作品一</h3>
+<a class="video-card"
+href="https://youtu.be/Q2qZrRZolSQ"
+target="_blank">
 
-        </a>
+<img src="https://img.youtube.com/vi/Q2qZrRZolSQ/maxresdefault.jpg">
 
-        <a
-            class="video-card"
-            href="https://youtu.be/oN6YJ5yFLVM"
-            target="_blank">
+<h5>作品一</h5>
 
-            <img
-            src="images/video2.jpg"
-            alt="作品二">
+</a>
 
-            <h3>作品二</h3>
+<a class="video-card"
+href="https://youtu.be/oN6YJ5yFLVM"
+target="_blank">
 
-        </a>
+<img src="https://img.youtube.com/vi/oN6YJ5yFLVM/maxresdefault.jpg">
 
-        <a
-            class="video-card"
-            href="https://youtu.be/CW_auslhOrw"
-            target="_blank">
+<h5>作品二</h5>
 
-            <img
-            src="images/video3.jpg"
-            alt="作品三">
+</a>
 
-            <h3>作品三</h3>
+<a class="video-card"
+href="https://youtu.be/CW_auslhOrw"
+target="_blank">
 
-        </a>
+<img src="https://img.youtube.com/vi/CW_auslhOrw/maxresdefault.jpg">
 
-    </div>
+<h5>作品三</h5>
 
-    `
-    },
+</a>
 
-    projectBtn: {
+</div>
+`;
 
-        title: "作品集",
+            break;
 
-        body: `
-        <p>
-        Project 01<br>
-        Project 02<br>
-        Project 03
-        </p>
-        `
-    },
+        case "projectBtn":
 
-    treasureBtn: {
+            modalTitle.innerHTML =
+                "作品集";
 
-        title: "彩蛋",
+            modalBody.innerHTML =
 
-        body: `
-        <p>
-        恭喜找到 ROOM404 的秘密寶箱！
-        </p>
-        `
-    }
+                `
+<div data-aos="zoom-in">
 
-};
+<h3>ROOM404</h3>
 
-/* =====================
-   Hotspots
-===================== */
+<p>
+404森林探索企劃
+</p>
 
-document
-    .querySelectorAll(".hotspot")
-    .forEach(item => {
+<hr>
 
-        item.addEventListener(
-            "mousemove",
-            e => {
+<h3>Project 02</h3>
 
-                tooltip.innerHTML =
-                    names[item.id];
+<p>
+未來新增
+</p>
 
-                tooltip.style.left =
-                    (e.clientX + 15) + "px";
+</div>
+`;
 
-                tooltip.style.top =
-                    (e.clientY + 15) + "px";
+            break;
 
-                tooltip.style.opacity = 1;
-            }
-        );
+        case "treasureBtn":
 
-        item.addEventListener(
-            "mouseleave",
-            () => {
-                tooltip.style.opacity = 0;
-            }
-        );
+            modalTitle.innerHTML =
+                "彩蛋";
 
-        item.addEventListener(
-            "click",
-            () => {
+            modalBody.innerHTML =
 
-                if (item.id === "doorBtn") {
+                `
+<div data-aos="flip-left">
 
-                    location.href =
-                        "index.html";
+<h2>🗝 恭喜找到彩蛋</h2>
 
-                    return;
-                }
+<p>
+你已進入 ROOM404 的秘密區域。
+</p>
 
-                modalTitle.innerHTML =
-                    content[item.id].title;
+</div>
+`;
 
-                modalBody.innerHTML =
-                    content[item.id].body;
+            break;
 
-                modal.classList.add(
-                    "show"
-                );
-            }
-        );
+        case "doorBtn":
 
-    });
-
-/* =====================
-/* =====================
-   關閉 Modal
-===================== */
-
-closeBtn.addEventListener(
-    "click",
-    () => {
-        modal.classList.remove(
-            "show"
-        );
-    }
-);
-
-modal.addEventListener(
-    "click",
-    e => {
-
-        if (e.target === modal) {
-
-            modal.classList.remove(
-                "show"
-            );
-        }
+            location.href = "index.html";
+            return;
 
     }
-);
+
+    modal.show();
+
+    setTimeout(() => {
+
+        AOS.refresh();
+
+    }, 100);
+
+}
