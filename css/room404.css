@@ -1,0 +1,219 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #1b140d;
+    overflow: hidden;
+    font-family: "Microsoft JhengHei", sans-serif;
+}
+
+/* =====================
+   房間
+===================== */
+
+#room {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#roomBackground {
+    max-width: 95vw;
+    max-height: 95vh;
+    object-fit: contain;
+    user-select: none;
+    pointer-events: none;
+}
+
+/* =====================
+   熱區
+===================== */
+
+.hotspot {
+    position: absolute;
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    outline: none;
+}
+
+/* 工作桌 */
+
+#deskBtn {
+    left: 18%;
+    top: 40%;
+    width: 180px;
+    height: 140px;
+}
+
+/* 書櫃 */
+
+#bookBtn {
+    left: 33%;
+    top: 13%;
+    width: 260px;
+    height: 140px;
+}
+
+/* 地球儀 */
+
+#globeBtn {
+    left: 58%;
+    top: 24%;
+    width: 120px;
+    height: 120px;
+}
+
+/* 留聲機 */
+
+#gramophoneBtn {
+    left: 61%;
+    top: 46%;
+    width: 180px;
+    height: 160px;
+}
+
+/* 展示櫃 */
+
+#projectBtn {
+    left: 46%;
+    top: 72%;
+    width: 260px;
+    height: 120px;
+}
+
+/* 寶箱 */
+
+#treasureBtn {
+    left: 28%;
+    top: 72%;
+    width: 180px;
+    height: 140px;
+}
+
+/* 門 */
+
+#doorBtn {
+    left: 49%;
+    top: 10%;
+    width: 120px;
+    height: 170px;
+}
+
+/* =====================
+   Tooltip
+===================== */
+
+#tooltip {
+    position: fixed;
+    opacity: 0;
+    pointer-events: none;
+    background: rgba(40,28,15,.95);
+    color: #f5e4b4;
+    padding: 8px 14px;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: .15s;
+    z-index: 9999;
+    white-space: nowrap;
+    box-shadow: 0 0 10px rgba(0,0,0,.4);
+}
+
+/* =====================
+   Modal
+===================== */
+
+#modal {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.75);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    z-index: 999;
+}
+
+    #modal.show {
+        display: flex;
+    }
+
+#modalContent {
+    width: 700px;
+    max-width: 90vw;
+    max-height: 80vh;
+    overflow: auto;
+    background: #f0dfb2;
+    border: 8px solid #8a6735;
+    border-radius: 12px;
+    padding: 30px;
+    position: relative;
+    animation: reveal .4s ease;
+}
+
+@keyframes reveal {
+
+    from {
+        opacity: 0;
+        transform: scale(.85);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+#closeBtn {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+    border: none;
+    background: none;
+    font-size: 28px;
+    cursor: pointer;
+    color: #5a3d1b;
+}
+
+#modalTitle {
+    color: #5a3d1b;
+    margin-bottom: 20px;
+}
+
+#modalBody {
+    color: #3d2c16;
+    line-height: 1.8;
+}
+
+
+.video-grid {
+    display: grid;
+    gap: 20px;
+}
+
+.video-card {
+    display: block;
+    text-decoration: none;
+    color: #3d2c16;
+    transition: .3s;
+}
+
+    .video-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .video-card img {
+        width: 100%;
+        border-radius: 10px;
+        border: 3px solid #8a6735;
+    }
+
+    .video-card h3 {
+        margin-top: 10px;
+        text-align: center;
+    }
